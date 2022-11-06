@@ -3,7 +3,7 @@ name: post
 on:
   push:
   schedule:
-    - cron: '*/5 01 * * *' 
+    - cron: '*/5 01-8 * * *' 
   workflow_dispatch:
   repository_dispatch:
     types:
