@@ -1,3 +1,4 @@
+
 import json
 import requests
 
@@ -15,16 +16,30 @@ class WechatMessagePush:
         '''
         url = f"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={self.appid}&secret={self.appsecret}"
         response = requests.get(url)
+
         res = response.json()
         if "access_token" in res:
             token = res["access_token"]
             return token
+
+    def get_wechat_accout_fans_count(self):
+        '''
+        获取微信公众号所有粉丝的openid
+        '''
+        next_openid = ''
+        url = f"https://api.weixin.qq.com/cgi-bin/user/get?access_token={self.token}&next_openid={next_openid}"
+        response = requests.get(url)
+        res = response.json()['data']['openid']
+        return res
+
     def send_wechat_temple_msg(self, push_dict):
         '''
         发送微信公众号的模板消息'''
         url = f"https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={self.token}"
-        touser_list=['o0gfI6HUFSZjpwYC9ZjbSS8Z43Jw','o0gfI6JKkTYAi6GUl7MJpPnL-QfY']
-        for open_id in touser_list:
+
+        fan_open_id = self.get_wechat_accout_fans_count()
+        for open_id in fan_open_id:
+            print(open_id)
             body = {
                 "touser": open_id,
                 "template_id": self.temple_id,
@@ -37,7 +52,8 @@ class WechatMessagePush:
                 }
 
             }
+
             headers = {"Content-type": "application/json"}
             data = json.JSONEncoder().encode(body)
             res = requests.post(url=url, data=data, headers=headers)
-        # print(res)
+            # print(res)
