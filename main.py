@@ -19,8 +19,8 @@ def get_info():
         "User-Agent":"okhttp/3.8.0"
     }
 
-    # date = "2022-11-04"
-    date = str(datetime.date.today())
+    date = "2022-11-04"
+    #date = str(datetime.date.today())
 
     body = {"option0": "alphaGo",
             "option1": "server",
@@ -47,8 +47,8 @@ def get_info1():
         "Accept-Encoding":"gzip",
         "User-Agent":"okhttp/3.8.0"
     }
-   # date = "2022-11-04"
-    date = str(datetime.date.today())
+    date = "2022-11-04"
+    #date = str(datetime.date.today())
     body = {"option0": "alphaGo",
         "option1": "server",
         "option2": "timeDivingGold",
@@ -74,8 +74,8 @@ def get_info2():
         "Accept-Encoding":"gzip",
         "User-Agent":"okhttp/3.8.0"
     }
-    #date = "2022-11-04"
-    date = str(datetime.date.today())
+    date = "2022-11-04"
+    #date = str(datetime.date.today())
     body = {"option0": "alphaGo",
         "option1": "server",
         "option2": "minuteUpShadow",
@@ -101,8 +101,8 @@ def get_info3():
         "Accept-Encoding":"gzip",
         "User-Agent":"okhttp/3.8.0"
     }
-    #date = "2022-11-04"
-    date = str(datetime.date.today())
+    date = "2022-11-04"
+    #date = str(datetime.date.today())
     body = {"option0": "alphaGo",
         "option1": "server",
         "option2": "minutePulseQulet",
