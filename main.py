@@ -202,7 +202,7 @@ def push_info(filepath,list_result,template_id):
 
     save_list(filepath,list_result)
 
-def push_info(filepath,list_result,template_id,web_hook):
+def push_info(filepath,list_result,web_hook):
     appid = "wxf418fb3a4ff3873f"
     screct = "dc73193225971a9d2c747794c1f50cd9"
     #template_id = "Vos7ef7UiEXRXL6AfLsA83zbOD9Ehkd9nQ79OMLKuYg"
@@ -291,7 +291,7 @@ if __name__ == '__main__':
     webhook1 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=8eed9b02-38de-4d20-939c-278214128005"
     webhook2 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=9b6a9289-c683-4f42-9a77-04c4384cf19e"
     webhook3 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0810ff88-06be-46dc-9d67-07e1d894ad95"
-    push_info(filepath,list_result,template_id,webhook)
-    push_info(filepath1,list_result1,template_id1,webhook1)
-    push_info(filepath2,list_result2,template_id2,webhook2)
-    push_info(filepath3,list_result3,template_id3,webhook3)
+    push_info(filepath,list_result,webhook)
+    push_info(filepath1,list_result1,webhook1)
+    push_info(filepath2,list_result2,webhook2)
+    push_info(filepath3,list_result3,webhook3)
