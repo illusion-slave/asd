@@ -156,7 +156,7 @@ def read_list(filepath):
     b.close()
     return out
 
-def push_info(filepath,list_result):
+def push_info(filepath,list_result,web_hook):
     appid = "wx112f057de987d19e"
     screct = "0c9af8144a9f98b2ece14e8a0918778d"
     #template_id = "Vos7ef7UiEXRXL6AfLsA83zbOD9Ehkd9nQ79OMLKuYg"
