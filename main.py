@@ -208,13 +208,13 @@ def push_report(push_dict,web_hook):
         "Content-Type": "application/json;charset=UTF-8"
     }
     message_body = {
-        "msgtype": "markdown",
-        "markdown": {
+        "msgtype": "text",
+        "text": {
             "content":
-                "##### •  code："+ push_dict['code'] +
-                "##### •  name："+ push_dict['name'] +
-                "##### •  getTime：" + push_dict['getTime'] +
-                "##### •  firstGetTime："+ push_dict['firstGetTime']
+                " •  code："+ push_dict['code'] +
+                " •  name："+ push_dict['name'] +
+                " •  getTime：" + push_dict['getTime'] +
+                " •  firstGetTime："+ push_dict['firstGetTime']
         },
         "at": {
             "atMobiles": [],
