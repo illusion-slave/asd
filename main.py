@@ -256,7 +256,7 @@ def push_report(push_dict,web_hook):
         "msgtype": "markdown",
         "markdown": {
             "content":
-                "##### •  code:%s \n" % + push_dict['code']} +
+                "##### •  code:%s \n" % + push_dict['code'] +
                 "##### •  name：%s \n" % + push_dict['name'] +
                 "##### •  getTime：%s \n" % + push_dict['getTime'] +
                 "##### •  firstGetTime：%s \n" +% push_dict['firstGetTime']
