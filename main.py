@@ -101,8 +101,8 @@ def get_info3():
         "Accept-Encoding":"gzip",
         "User-Agent":"okhttp/3.8.0"
     }
-   # date = "2022-11-04"
-    date = str(datetime.date.today())
+    date = "2022-11-04"
+    #date = str(datetime.date.today())
     body = {"option0": "alphaGo",
         "option1": "server",
         "option2": "minutePulseQulet",
@@ -214,7 +214,8 @@ def push_report(push_dict,web_hook):
                 " •  code："+ push_dict['code'] +
                 " •  name："+ push_dict['name'] +
                 " •  getTime：" + push_dict['getTime'] +
-                " •  firstGetTime："+ push_dict['firstGetTime']
+                " •  firstGetTime："+ push_dict['firstGetTime'] +
+                "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code']
         },
         "at": {
             "atMobiles": [],
