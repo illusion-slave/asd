@@ -39,7 +39,6 @@ class WechatMessagePush:
 
         fan_open_id = self.get_wechat_accout_fans_count()
         for open_id in fan_open_id:
-            print(open_id)
             body = {
                 "touser": open_id,
                 "template_id": self.temple_id,
