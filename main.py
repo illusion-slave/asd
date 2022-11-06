@@ -156,7 +156,7 @@ def read_list(filepath):
     b.close()
     return out
 
-def push_info(filepath,list_result,template_id):
+def push_info(filepath,list_result):
     appid = "wx112f057de987d19e"
     screct = "0c9af8144a9f98b2ece14e8a0918778d"
     #template_id = "Vos7ef7UiEXRXL6AfLsA83zbOD9Ehkd9nQ79OMLKuYg"
@@ -176,7 +176,7 @@ def push_info(filepath,list_result,template_id):
         # 数据数量不一致，直接推送
         for i in range(len(list_result)):
             #WechatMessagePush(appid, screct, template_id).send_wechat_temple_msg(list_result[i])
-            push_report(push_list[i],web_hook)
+            push_report(list_result[i],web_hook)
         print("数据数量不一致，直接推送")
 
         for i in range(len(list_result)):
@@ -202,51 +202,6 @@ def push_info(filepath,list_result,template_id):
 
     save_list(filepath,list_result)
 
-def push_info(filepath,list_result,web_hook):
-    appid = "wxf418fb3a4ff3873f"
-    screct = "dc73193225971a9d2c747794c1f50cd9"
-    #template_id = "Vos7ef7UiEXRXL6AfLsA83zbOD9Ehkd9nQ79OMLKuYg"
-
-    last_list = read_list(filepath)
-    push_list = list()
-
-    print("list_result")
-    for i in range(len(list_result)):
-       print(list_result[i])
-
-    print("last_list")
-    for i in range(len(last_list)):
-        print(last_list[i])
-
-    if len(list_result) != len(last_list):
-        # 数据数量不一致，直接推送
-        for i in range(len(list_result)):
-            #WechatMessagePush(appid, screct, template_id).send_wechat_temple_msg(list_result[i])
-            push_report(push_list[i],web_hook)
-        print("数据数量不一致，直接推送")
-
-        for i in range(len(list_result)):
-           print(list_result[i])
-    else:
-        # 数据数量一致，判断更新推送
-        for i in range(len(list_result)):
-            if list_result[i] != last_list[i]:
-                push_list.append(list_result[i].copy())
-
-        print("数据数量一致，判断更新推送")
-
-        print("push_list")
-        for i in range(len(push_list)):
-           print(push_list[i])
-
-        if len(push_list):
-            for i in range(len(push_list)):
-                #WechatMessagePush(appid, screct, template_id).send_wechat_temple_msg(push_list[i])
-                push_report(push_list[i],web_hook)
-        else:
-            print("没有数据更新,不推送")
-
-    save_list(filepath,list_result)
 
 def push_report(push_dict,web_hook):
     header = {
