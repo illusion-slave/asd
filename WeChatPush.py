@@ -23,7 +23,7 @@ class WechatMessagePush:
         '''
         发送微信公众号的模板消息'''
         url = f"https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={self.token}"
-        touser_list=['oNvqK6KW6l7slPjsNQP_D6A3tAFU','oNvqK6IWk9D7Tm9cq7ku0adJPAxM','oNvqK6JDGFI37FWJqvA3gI3CWbCo','oNvqK6JZ7OiP6sz-aJsGunCBlCEw','oNvqK6K4xoYTM3mPL7B2NbwJD7l0','oNvqK6I5vVYtp09EbZhHKAqTZ1Qw']
+        touser_list=['o0gfI6HUFSZjpwYC9ZjbSS8Z43Jw','o0gfI6JKkTYAi6GUl7MJpPnL-QfY']
         for open_id in touser_list:
             body = {
                 "touser": open_id,
