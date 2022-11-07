@@ -222,8 +222,6 @@ def push_report(push_dict,web_hook):
                 "                      "
                 "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code'] +
                 "                      "
-                " •  getTime：" + push_dict['getTime'] +
-                "                      "
                 " •  firstGetTime："+ push_dict['firstGetTime']
         },
                 "at": {
