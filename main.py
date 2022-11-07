@@ -215,11 +215,16 @@ def push_report(push_dict,web_hook):
         "msgtype": "text",
         "text": {
             "content":
-                " •  code："+ push_dict['code'] +\n
-                " •  name："+ push_dict['name'] +\n
-                "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code'] +\n
-                " •  getTime：" + push_dict['getTime'] +\n
-                
+                " •  code："+ push_dict['code'] +
+                "          "
+                " •  name："+ push_dict['name'] +
+                "          "
+                "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code'] +
+
+                "          "
+                " •  getTime：" + push_dict['getTime'] +
+
+                "          "
                 " •  firstGetTime："+ push_dict['firstGetTime']
         },
         "at": {
