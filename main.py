@@ -19,7 +19,7 @@ def get_info():
         "User-Agent":"okhttp/3.8.0"
     }
 
-    #date = "2022-11-04"
+    # date = "2022-11-04"
     date = str(datetime.date.today())
 
     body = {"option0": "alphaGo",
@@ -47,7 +47,7 @@ def get_info1():
         "Accept-Encoding":"gzip",
         "User-Agent":"okhttp/3.8.0"
     }
-    #date = "2022-11-04"
+   # date = "2022-11-04"
     date = str(datetime.date.today())
     body = {"option0": "alphaGo",
         "option1": "server",
@@ -101,7 +101,7 @@ def get_info3():
         "Accept-Encoding":"gzip",
         "User-Agent":"okhttp/3.8.0"
     }
-    #date = "2022-11-04"
+   # date = "2022-11-04"
     date = str(datetime.date.today())
     body = {"option0": "alphaGo",
         "option1": "server",
@@ -214,8 +214,7 @@ def push_report(push_dict,web_hook):
                 " •  code："+ push_dict['code'] +
                 " •  name："+ push_dict['name'] +
                 " •  getTime：" + push_dict['getTime'] +
-                " •  firstGetTime："+ push_dict['firstGetTime'] +
-                "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code']
+                " •  firstGetTime："+ push_dict['firstGetTime']
         },
         "at": {
             "atMobiles": [],
