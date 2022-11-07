@@ -1,3 +1,4 @@
+
 import datetime
 import json
 import requests
@@ -127,10 +128,10 @@ def parse_info(res):
     list3 = list()
     for _ in list2:
         for k, v in _.items():
-            if k == 'code' or k == 'name' : #or k == 'getTime' or k == 'firstGetTime':
+            if k == 'code' or k == 'name' or k == 'getTime' or k == 'firstGetTime':
                 dict_result[k] = v
-        #print(dict_result)
-        if dict_result['code'] != dict_result['code']:
+        # print(dict_result)
+        if dict_result['getTime'] != dict_result['firstGetTime']:
             list3.append(dict_result.copy())
  
     return list3
