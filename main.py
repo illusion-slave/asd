@@ -211,30 +211,23 @@ def push_report(push_dict,web_hook):
     header = {
         "Content-Type": "application/json;charset=UTF-8"
     }
+    
+   
     message_body = {
-        {
-            "msgtype": "markdown",
-            "markdown": {
-                "content": "实时新增用户反馈<font color=\"warning\">132例</font>，请相关同事注意。\n
-                >类型:<font color=\"comment\">用户反馈</font>
-                >普通用户反馈:<font color=\"comment\">117例</font>
-                >VIP用户反馈:<font color=\"comment\">15例</font>"
-            }
+        "msgtype": "markdown",
+        "markdown": {
+            "content": 
+                "code："+ %s push_dict['code'] \\n "
+                "name："+ %s push_dict['name'] \\n"
+                "[这是一个链接](https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code']) \\n
+                "firstGetTime: " + %s push_dict['firstGetTime']</font>"
+        }
+    },
+                "at": {
+            "atMobiles": [],
+            "isAtAll": False
+        }
     }
-        # "msgtype": "markdown",
-        # "markdown": {
-            # "content": "实时新增用户反馈<font color=\"warning\">132例</font>，请相关同事注意。\n
-                # " •  code："+ push_dict['code'] +
-                # "                      "
-                # " •  name："+ push_dict['name'] +
-                # "                      "
-                # "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code']
-        # },
-                # "at": {
-            # "atMobiles": [],
-            # "isAtAll": False
-        # }
-    # }
     send_data = json.dumps(message_body)  # 将字典类型数据转化为json格式
     ChatBot = requests.post(url=web_hook, data=send_data, headers=header)
     opener = ChatBot.json()
