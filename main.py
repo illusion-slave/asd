@@ -217,10 +217,10 @@ def push_report(push_dict,web_hook):
         "msgtype": "markdown",
         "markdown": {
             "content": 
-                "code："+ %s push_dict['code'] \\n "
-                "name："+ %s push_dict['name'] \\n"
+                "code："+ push_dict['code'] \\n "
+                "name："+ push_dict['name'] \\n"
                 "[这是一个链接](https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code']) \\n
-                "firstGetTime: " + %s push_dict['firstGetTime']</font>"
+                "firstGetTime: "+ push_dict['firstGetTime']</font>"
         }
     },
                 "at": {
