@@ -128,12 +128,11 @@ def parse_info(res):
     list3 = list()
     for _ in list2:
         for k, v in _.items():
-            if k == 'code' or k == 'name' or k == 'getTime' or k == 'firstGetTime':
+            if k == 'code' or k == 'name' or k == 'firstGetTime':
                 dict_result[k] = v
         # print(dict_result)
-        if dict_result['getTime'] != dict_result['firstGetTime']:
-            list3.append(dict_result.copy())
- 
+        #if dict_result['getTime'] != dict_result['firstGetTime']:
+        list3.append(dict_result.copy())
     return list3
  
     # for i in range(len(list3)):
@@ -213,18 +212,14 @@ def push_report(push_dict,web_hook):
         "Content-Type": "application/json;charset=UTF-8"
     }
     message_body = {
-        "msgtype": "text",
-        "text": {
-            "content":
+        "msgtype": "markdown",
+        "markdown": {
+            "content": "实时新增用户反馈<font color=\"warning\">132例</font>，请相关同事注意。\n
                 " •  code："+ push_dict['code'] +
                 "                      "
                 " •  name："+ push_dict['name'] +
                 "                      "
-                "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code'] +
-                "                      "
-                " •  getTime：" + push_dict['getTime'] +
-                "                      "
-                " •  firstGetTime："+ push_dict['firstGetTime']
+                "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code']
         },
                 "at": {
             "atMobiles": [],
