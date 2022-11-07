@@ -168,13 +168,13 @@ def push_info(filepath,list_result,web_hook):
     for i in range(len(list_result)):
        print(list_result[i])
     
-    if len(list_result)
+    if len(list_result):
+       print("last_list")
+       for i in range(len(last_list)):
+           print(last_list[i])
     else:
        print("no result")
  
-    print("last_list")
-    for i in range(len(last_list)):
-        print(last_list[i])
  
     if len(list_result) != len(last_list):
         # 数据数量不一致，直接推送
@@ -215,11 +215,16 @@ def push_report(push_dict,web_hook):
         "msgtype": "text",
         "text": {
             "content":
-                " •  code："+ push_dict['code'] +\n
-                " •  name："+ push_dict['name'] +\n
-                "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code'] +\n
-                " •  getTime：" + push_dict['getTime'] +\n
-                
+                " •  code："+ push_dict['code'] +
+                "          "
+                " •  name："+ push_dict['name'] +
+                "          "
+                "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code'] +
+
+                "          "
+                " •  getTime：" + push_dict['getTime'] +
+
+                "          "
                 " •  firstGetTime："+ push_dict['firstGetTime']
         },
         "at": {
@@ -255,4 +260,4 @@ if __name__ == '__main__':
     push_info(filepath,list_result,webhook)
     push_info(filepath1,list_result1,webhook1)
     push_info(filepath2,list_result2,webhook2)
-    push_info(filepath3,list_result3,webhook3)
+    push_info(filepath3,list_result3,webhook3
