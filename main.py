@@ -168,7 +168,7 @@ def push_info(filepath,list_result,web_hook):
     for i in range(len(list_result)):
        print(list_result[i])
     
-    if len(list_result)
+    if len(list_result):
     else:
        print("no result")
  
