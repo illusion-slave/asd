@@ -169,9 +169,9 @@ def push_info(filepath,list_result,web_hook):
        print(list_result[i])
     
     if len(list_result):
-       print("last_list")
-       for i in range(len(last_list)):
-           print(last_list[i])
+        print("last_list")
+        for i in range(len(last_list)):
+            print(last_list[i])
     else:
        print("no result")
  
@@ -216,16 +216,16 @@ def push_report(push_dict,web_hook):
         "text": {
             "content":
                 " •  code："+ push_dict['code'] +
-                "          "
+                "                      "
                 " •  name："+ push_dict['name'] +
-                "          "
+                "                      "
                 "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code'] +
-                "          "
+                "                      "
                 " •  getTime：" + push_dict['getTime'] +
-                "          "
+                "                      "
                 " •  firstGetTime："+ push_dict['firstGetTime']
         },
-        "at": {
+                "at": {
             "atMobiles": [],
             "isAtAll": False
         }
@@ -258,4 +258,4 @@ if __name__ == '__main__':
     push_info(filepath,list_result,webhook)
     push_info(filepath1,list_result1,webhook1)
     push_info(filepath2,list_result2,webhook2)
-    push_info(filepath3,list_result3,webhook3
+    push_info(filepath3,list_result3,webhook3)
