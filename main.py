@@ -128,11 +128,12 @@ def parse_info(res):
     list3 = list()
     for _ in list2:
         for k, v in _.items():
-            if k == 'code' or k == 'name' or k == 'firstGetTime':
+            if k == 'code' or k == 'name' or or k == 'firstGetTime':
                 dict_result[k] = v
         # print(dict_result)
-        #if dict_result['getTime'] != dict_result['firstGetTime']:
+        # if dict_result['getTime'] != dict_result['firstGetTime']:
         list3.append(dict_result.copy())
+ 
     return list3
  
     # for i in range(len(list3)):
@@ -211,18 +212,20 @@ def push_report(push_dict,web_hook):
     header = {
         "Content-Type": "application/json;charset=UTF-8"
     }
-    
-   
     message_body = {
-        "msgtype": "markdown",
-        "markdown": {
-            "content": 
-                "code："+ push_dict['code'] \\n "
-                "name："+ push_dict['name'] \\n"
-                "[这是一个链接](https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code']) \\n
-                "firstGetTime: "+ push_dict['firstGetTime']</font>"
-        }
-    },
+        "msgtype": "text",
+        "text": {
+            "content":
+                " •  code："+ push_dict['code'] +
+                "                      "
+                " •  name："+ push_dict['name'] +
+                "                      "
+                "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code'] +
+                "                      "
+                " •  getTime：" + push_dict['getTime'] +
+                "                      "
+                " •  firstGetTime："+ push_dict['firstGetTime']
+        },
                 "at": {
             "atMobiles": [],
             "isAtAll": False
