@@ -131,7 +131,7 @@ def parse_info(res):
                 dict_result[k] = v
         #print(dict_result)
         if dict_result['code'] != dict_result['code']:
-        list3.append(dict_result.copy())
+            list3.append(dict_result.copy())
  
     return list3
  
