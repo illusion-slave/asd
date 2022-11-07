@@ -169,12 +169,12 @@ def push_info(filepath,list_result,web_hook):
        print(list_result[i])
     
     if len(list_result):
+       print("last_list")
+       for i in range(len(last_list)):
+           print(last_list[i])
     else:
        print("no result")
  
-    print("last_list")
-    for i in range(len(last_list)):
-        print(last_list[i])
  
     if len(list_result) != len(last_list):
         # 数据数量不一致，直接推送
