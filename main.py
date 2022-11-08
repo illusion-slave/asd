@@ -147,23 +147,27 @@ if __name__ == '__main__':
     filepath1 = "./data_source_list_1.txt"
     filepath2 = "./data_source_list_2.txt"
     filepath3 = "./data_source_list_3.txt"
-    res = get_info("166","minuteLargeDdePulseQulet")
-    res1 = get_info("156","timeDivingGold")
-    res2 = get_info("156","minuteUpShadow")
-    res3 = get_info("158","minutePulseQulet")
-    list_result = parse_info(res)
-    list_result1 = parse_info(res1)
-    list_result2 = parse_info(res2)
-    list_result3 = parse_info(res3)
     webhook = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f38433df-3a2a-46d3-bd45-8d31bf8adc94"
     webhook1 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=8eed9b02-38de-4d20-939c-278214128005"
     webhook2 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=9b6a9289-c683-4f42-9a77-04c4384cf19e"
     webhook3 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0810ff88-06be-46dc-9d67-07e1d894ad95"
+
     print("list_大单回调")
-    push_info(filepath,list_result,webhook)
+    res = get_info("166","minuteLargeDdePulseQulet")
+    list_result = parse_info(res)
+    push_info(filepath, list_result, webhook)
+
     print("list_潜水捞金")
-    push_info(filepath1,list_result1,webhook1)
+    res1 = get_info("156","timeDivingGold")
+    list_result1 = parse_info(res1)
+    push_info(filepath1, list_result1, webhook1)
+
     print("list_尾盘上引")
-    push_info(filepath2,list_result2,webhook2)
+    res2 = get_info("156","minuteUpShadow")
+    list_result2 = parse_info(res2)
+    push_info(filepath2, list_result2, webhook2)
+
     print("list_强势回调")
-    push_info(filepath3,list_result3,webhook3)
+    res3 = get_info("158","minutePulseQulet")
+    list_result3 = parse_info(res3)
+    push_info(filepath3, list_result3, webhook3)
