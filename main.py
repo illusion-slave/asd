@@ -169,11 +169,11 @@ def push_info(filepath,list_result,web_hook):
     for i in range(len(list_result)):
        print(list_result[i])
     
-    if len(list_result):
+    try:
         print("last_list")
         for i in range(len(last_list)):
             print(last_list[i])
-    else:
+    except IOError:
        print("no result")
  
  
