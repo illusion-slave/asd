@@ -226,5 +226,4 @@ if __name__ == '__main__':
     webhook3 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0810ff88-06be-46dc-9d67-07e1d894ad95"
     push_info(filepath,list_result,webhook)
     push_info(filepath1,list_result1,webhook1)
-    push_info(filepath2,list_result2,webhook2)
     push_info(filepath3,list_result3,webhook3)
