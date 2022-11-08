@@ -35,29 +35,32 @@ def get_info(ContentLength,option2):
  
 def parse_info(res):
     # 请求数据成功
+    list3 = list()
     if res.status_code == 200:
         json1 = json.loads(res.text)
         dict1 = dict(json1)
         list1 = dict1.get("data")
-        str1 = ''.join(list1)
-        list2 = json.loads(str1)
-        # for i in range(len(list2)):
-        #     print(list2[i])
-        dict_result = {}
-        list3 = list()
-        for _ in list2:
-            for k, v in _.items():
-                if k == 'code' or k == 'name' or k == 'firstGetTime':
-                    dict_result[k] = v
-            list3.append(dict_result.copy())
+        if len(list1):
+            str1 = ''.join(list1)
+            list2 = json.loads(str1)
+            # for i in range(len(list2)):
+            #     print(list2[i])
+            dict_result = {}
+            for _ in list2:
+                for k, v in _.items():
+                    if k == 'code' or k == 'name' or k == 'firstGetTime':
+                        dict_result[k] = v
+                list3.append(dict_result.copy())
 
-        # print("list3")
-        # for i in range(len(list3)):
-        #     print(list3[i])
-
-        return list3
+            # print("list3")
+            # for i in range(len(list3)):
+            #     print(list3[i])
+        else:
+            print("data is null")
     else:
-        print("requset failed! 未获取到数据")
+        print("requset failed!")
+
+    return list3
 
  
 def save_list(filepath,c_list):
