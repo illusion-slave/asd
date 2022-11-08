@@ -19,8 +19,8 @@ def get_info(ContentLength,option2):
         "User-Agent":"okhttp/3.8.0"
     }
  
-    date = "2022-11-01"
-    # date = str(datetime.date.today())
+    # date = "2022-11-01"
+    date = str(datetime.date.today())
  
     body = {"option0": "alphaGo",
             "option1": "server",
