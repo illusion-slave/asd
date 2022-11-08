@@ -49,14 +49,13 @@ def parse_info(res):
             for k, v in _.items():
                 if k == 'code' or k == 'name' or k == 'firstGetTime':
                     dict_result[k] = v
-            # print(dict_result)
-            if dict_result['getTime'] != dict_result['firstGetTime']:
-                list3.append(dict_result.copy())
+            list3.append(dict_result.copy())
 
-        return list3
-
+        # print("list3")
         # for i in range(len(list3)):
         #     print(list3[i])
+
+        return list3
     else:
         print("requset failed! 未获取到数据")
 
@@ -82,52 +81,41 @@ def read_list(filepath):
 def push_info(filepath,list_result,web_hook):
     appid = "wx112f057de987d19e"
     screct = "0c9af8144a9f98b2ece14e8a0918778d"
-    #template_id = "Vos7ef7UiEXRXL6AfLsA83zbOD9Ehkd9nQ79OMLKuYg"
+    # template_id = "Vos7ef7UiEXRXL6AfLsA83zbOD9Ehkd9nQ79OMLKuYg"
  
     last_list = read_list(filepath)
     push_list = list()
- 
-    print("list_result")
-    for i in range(len(list_result)):
-       print(list_result[i])
-    
+
     if len(list_result):
         print("last_list")
         for i in range(len(last_list)):
             print(last_list[i])
-    else:
-       print("no result")
- 
- 
-    if len(list_result) != len(last_list):
-        # 数据数量不一致，直接推送
+
+        print("list_result")
         for i in range(len(list_result)):
-            #WechatMessagePush(appid, screct, template_id).send_wechat_temple_msg(list_result[i])
-            push_report(list_result[i],web_hook)
-        print("数据数量不一致，直接推送")
- 
+            print(list_result[i])
+
         for i in range(len(list_result)):
-           print(list_result[i])
-    else:
-        # 数据数量一致，判断更新推送
-        for i in range(len(list_result)):
-            if list_result[i] != last_list[i]:
+            if list_result[i] not in last_list:
                 push_list.append(list_result[i].copy())
- 
-        print("数据数量一致，判断更新推送")
- 
+
         print("push_list")
-        for i in range(len(push_list)):
-           print(push_list[i])
- 
         if len(push_list):
             for i in range(len(push_list)):
-                #WechatMessagePush(appid, screct, template_id).send_wechat_temple_msg(push_list[i])
-                push_report(push_list[i],web_hook)
+                print(push_list[i])
+                # 这里推送
+                # WechatMessagePush(appid, screct, template_id).send_wechat_temple_msg(push_list[i])
+                # push_report(push_list[i],web_hook)
         else:
-            print("没有数据更新,不推送")
- 
-    save_list(filepath,list_result)
+            print("push_list empty!!!没有数据更新")
+
+
+        save_list(filepath, list_result)
+
+    else:
+        print("list_result empty!!!")
+
+
  
  
 def push_report(push_dict,web_hook):
@@ -168,6 +156,7 @@ if __name__ == '__main__':
     res1 = get_info("156","timeDivingGold")
     res2 = get_info("156","minuteUpShadow")
     res3 = get_info("158","minutePulseQulet")
+
     list_result = parse_info(res)
     list_result1 = parse_info(res1)
     list_result2 = parse_info(res2)
@@ -176,7 +165,11 @@ if __name__ == '__main__':
     webhook1 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=8eed9b02-38de-4d20-939c-278214128005"
     webhook2 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=9b6a9289-c683-4f42-9a77-04c4384cf19e"
     webhook3 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0810ff88-06be-46dc-9d67-07e1d894ad95"
+    print("list_大单回调")
     push_info(filepath,list_result,webhook)
+    print("list_潜水捞金")
     push_info(filepath1,list_result1,webhook1)
+    print("list_尾盘上引")
     push_info(filepath2,list_result2,webhook2)
+    print("list_强势回调")
     push_info(filepath3,list_result3,webhook3)
