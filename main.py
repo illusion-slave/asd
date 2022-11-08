@@ -1,8 +1,7 @@
 import datetime
 import json
 import requests
- 
-from WeChatPush import WechatMessagePush
+
  
 def get_info(ContentLength,option2):
     url = "http://hslhapp.hhws168.com/common/v1/jsonDownload/"
@@ -82,10 +81,6 @@ def read_list(filepath):
     return out
  
 def push_info(filepath,list_result,web_hook):
-    appid = "wx112f057de987d19e"
-    screct = "0c9af8144a9f98b2ece14e8a0918778d"
-    # template_id = "Vos7ef7UiEXRXL6AfLsA83zbOD9Ehkd9nQ79OMLKuYg"
- 
     last_list = read_list(filepath)
     push_list = list()
 
@@ -106,12 +101,9 @@ def push_info(filepath,list_result,web_hook):
         if len(push_list):
             for i in range(len(push_list)):
                 print(push_list[i])
-                # 这里推送
-                # WechatMessagePush(appid, screct, template_id).send_wechat_temple_msg(push_list[i])
                 push_report(push_list[i],web_hook)
         else:
             print("push_list empty!!!没有数据更新")
-
 
         save_list(filepath, list_result)
 
