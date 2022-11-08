@@ -43,6 +43,5 @@ jobs:
           git config --global user.email "wangaoting105@gmail.com"
           git config --global user.name "illusion-slave"
           git add -A
-          git commit -m "Github Action auto Updated"
-          git branch -u origin/main
+          git commit --allow-empty -m "Github Action auto Updated"
           git push
