@@ -13,7 +13,7 @@ def get_info(ContentLength,option2):
         "Versioncode":"1.2.8",
         "Channel":"alphago",
         "Content-Type":"application/json;charset=utf-8",
-        "Content-Length":"166",
+        "Content-Length":ContentLength,
         "Connection": "Keep-Alive",
         "Accept-Encoding":"gzip",
         "User-Agent":"okhttp/3.8.0"
@@ -24,7 +24,7 @@ def get_info(ContentLength,option2):
  
     body = {"option0": "alphaGo",
             "option1": "server",
-            "option2": "minuteLargeDdePulseQulet",
+            "option2": option2,
             "option3": "stockData",
             "option4": str(date),
             "option5": "9999",
