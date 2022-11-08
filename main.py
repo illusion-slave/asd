@@ -220,7 +220,6 @@ if __name__ == '__main__':
     res3 = get_info3()
     list_result = parse_info(res)
     list_result1 = parse_info(res1)
-    list_result2 = parse_info(res2)
     list_result3 = parse_info(res3)
     webhook = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f38433df-3a2a-46d3-bd45-8d31bf8adc94"
     webhook1 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=8eed9b02-38de-4d20-939c-278214128005"
