@@ -4,7 +4,7 @@ import requests
  
 from WeChatPush import WechatMessagePush
  
-def get_info():
+def get_info(ContentLength,option2):
     url = "http://hslhapp.hhws168.com/common/v1/jsonDownload/"
     headers = {
         "Host": "hslhapp.hhws168.com",
@@ -33,110 +33,33 @@ def get_info():
     responses = requests.post(url = url,data = json.dumps(body),headers = headers)
     return responses
  
-def get_info1():
-    url = "http://hslhapp.hhws168.com/common/v1/jsonDownload/"
-    headers = {
-        "Host": "hslhapp.hhws168.com",
-        "Token":"3a90beddb879790a606bcb1141e325d9",
-        "Content-Encoding": "gzip",
-        "Versioncode":"1.2.8",
-        "Channel":"alphago",
-        "Content-Type":"application/json;charset=utf-8",
-        "Content-Length":"156",
-        "Connection": "Keep-Alive",
-        "Accept-Encoding":"gzip",
-        "User-Agent":"okhttp/3.8.0"
-    }
-   # date = "2022-11-04"
-    date = str(datetime.date.today())
-    body = {"option0": "alphaGo",
-        "option1": "server",
-        "option2": "timeDivingGold",
-        "option3": "stockData",
-        "option4": str(date),
-        "option5": "9999",
-        "truncation": "cut20191111"
-    }
-    responses = requests.post(url = url,data = json.dumps(body),headers = headers)
-    return responses
- 
-def get_info2():
-    url = "http://hslhapp.hhws168.com/common/v1/jsonDownload/"
-    headers = {
-        "Host": "hslhapp.hhws168.com",
-        "Token":"3a90beddb879790a606bcb1141e325d9",
-        "Content-Encoding": "gzip",
-        "Versioncode":"1.2.8",
-        "Channel":"alphago",
-        "Content-Type":"application/json;charset=utf-8",
-        "Content-Length":"156",
-        "Connection": "Keep-Alive",
-        "Accept-Encoding":"gzip",
-        "User-Agent":"okhttp/3.8.0"
-    }
-    #date = "2022-11-04"
-    date = str(datetime.date.today())
-    body = {"option0": "alphaGo",
-        "option1": "server",
-        "option2": "minuteUpShadow",
-        "option3": "stockData",
-        "option4": str(date),
-        "option5": "9999",
-        "truncation": "cut20191111"
-    }
-    responses = requests.post(url = url,data = json.dumps(body),headers = headers)
-    return responses
- 
-def get_info3():
-    url = "http://hslhapp.hhws168.com/common/v1/jsonDownload/"
-    headers = {
-        "Host": "hslhapp.hhws168.com",
-        "Token":"3a90beddb879790a606bcb1141e325d9",
-        "Content-Encoding": "gzip",
-        "Versioncode":"1.2.8",
-        "Channel":"alphago",
-        "Content-Type":"application/json;charset=utf-8",
-        "Content-Length":"158",
-        "Connection": "Keep-Alive",
-        "Accept-Encoding":"gzip",
-        "User-Agent":"okhttp/3.8.0"
-    }
-   # date = "2022-11-04"
-    date = str(datetime.date.today())
-    body = {"option0": "alphaGo",
-        "option1": "server",
-        "option2": "minutePulseQulet",
-        "option3": "stockData",
-        "option4": str(date),
-        "option5": "9999",
-        "truncation": "cut20191111"
-    }
-    responses = requests.post(url = url,data = json.dumps(body),headers = headers)
-    return responses
- 
- 
 def parse_info(res):
-    json1 = json.loads(res.text)
-    dict1 = dict(json1)
-    list1 = dict1.get("data")
-    str1 = ''.join(list1)
-    list2 = json.loads(str1)
-    # for i in range(len(list2)):
-    #     print(list2[i])
-    dict_result = {}
-    list3 = list()
-    for _ in list2:
-        for k, v in _.items():
-            if k == 'code' or k == 'name' or k == 'firstGetTime':
-                dict_result[k] = v
-        # print(dict_result)
-        # if dict_result['getTime'] != dict_result['firstGetTime']:
-        #list3.append(dict_result.copy())
- 
-    return list3
- 
-    # for i in range(len(list3)):
-    #     print(list3[i])
+    # 请求数据成功
+    if res.status_code == 200:
+        json1 = json.loads(res.text)
+        dict1 = dict(json1)
+        list1 = dict1.get("data")
+        str1 = ''.join(list1)
+        list2 = json.loads(str1)
+        # for i in range(len(list2)):
+        #     print(list2[i])
+        dict_result = {}
+        list3 = list()
+        for _ in list2:
+            for k, v in _.items():
+                if k == 'code' or k == 'name' or k == 'firstGetTime':
+                    dict_result[k] = v
+            # print(dict_result)
+            if dict_result['getTime'] != dict_result['firstGetTime']:
+                list3.append(dict_result.copy())
+
+        return list3
+
+        # for i in range(len(list3)):
+        #     print(list3[i])
+    else:
+        print("requset failed! 未获取到数据")
+
  
 def save_list(filepath,c_list):
  
@@ -241,10 +164,10 @@ if __name__ == '__main__':
     filepath1 = "./data_source_list_1.txt"
     filepath2 = "./data_source_list_2.txt"
     filepath3 = "./data_source_list_3.txt"
-    res = get_info()
-    res1 = get_info1()
-    res2 = get_info2()
-    res3 = get_info3()
+    res = get_info("166","minuteLargeDdePulseQulet")
+    res1 = get_info("156","timeDivingGold")
+    res2 = get_info("156","minuteUpShadow")
+    res3 = get_info("158","minutePulseQulet")
     list_result = parse_info(res)
     list_result1 = parse_info(res1)
     list_result2 = parse_info(res2)
