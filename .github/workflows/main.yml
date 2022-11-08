@@ -44,4 +44,5 @@ jobs:
           git config --global user.name "illusion-slave"
           git add -A
           git commit -m "Github Action auto Updated"
+          git branch -u origin/main
           git push
