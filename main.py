@@ -131,7 +131,7 @@ def parse_info(res):
                 dict_result[k] = v
         # print(dict_result)
         # if dict_result['getTime'] != dict_result['firstGetTime']:
-        list3.append(dict_result.copy())
+        #list3.append(dict_result.copy())
  
     return list3
  
