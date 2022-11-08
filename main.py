@@ -108,7 +108,7 @@ def push_info(filepath,list_result,web_hook):
                 print(push_list[i])
                 # 这里推送
                 # WechatMessagePush(appid, screct, template_id).send_wechat_temple_msg(push_list[i])
-                # push_report(push_list[i],web_hook)
+                push_report(push_list[i],web_hook)
         else:
             print("push_list empty!!!没有数据更新")
 
@@ -159,7 +159,6 @@ if __name__ == '__main__':
     res1 = get_info("156","timeDivingGold")
     res2 = get_info("156","minuteUpShadow")
     res3 = get_info("158","minutePulseQulet")
-
     list_result = parse_info(res)
     list_result1 = parse_info(res1)
     list_result2 = parse_info(res2)
