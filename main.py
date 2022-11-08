@@ -1,4 +1,3 @@
-
 import datetime
 import json
 import requests
@@ -61,6 +60,32 @@ def get_info1():
     responses = requests.post(url = url,data = json.dumps(body),headers = headers)
     return responses
  
+def get_info2():
+    url = "http://hslhapp.hhws168.com/common/v1/jsonDownload/"
+    headers = {
+        "Host": "hslhapp.hhws168.com",
+        "Token":"3a90beddb879790a606bcb1141e325d9",
+        "Content-Encoding": "gzip",
+        "Versioncode":"1.2.8",
+        "Channel":"alphago",
+        "Content-Type":"application/json;charset=utf-8",
+        "Content-Length":"156",
+        "Connection": "Keep-Alive",
+        "Accept-Encoding":"gzip",
+        "User-Agent":"okhttp/3.8.0"
+    }
+    #date = "2022-11-04"
+    date = str(datetime.date.today())
+    body = {"option0": "alphaGo",
+        "option1": "server",
+        "option2": "minuteUpShadow",
+        "option3": "stockData",
+        "option4": str(date),
+        "option5": "9999",
+        "truncation": "cut20191111"
+    }
+    responses = requests.post(url = url,data = json.dumps(body),headers = headers)
+    return responses
  
 def get_info3():
     url = "http://hslhapp.hhws168.com/common/v1/jsonDownload/"
@@ -143,11 +168,11 @@ def push_info(filepath,list_result,web_hook):
     for i in range(len(list_result)):
        print(list_result[i])
     
-    try:
+    if len(list_result):
         print("last_list")
         for i in range(len(last_list)):
             print(last_list[i])
-    except IOError:
+    else:
        print("no result")
  
  
@@ -214,16 +239,21 @@ def push_report(push_dict,web_hook):
 if __name__ == '__main__':
     filepath = "./data_source_list.txt"
     filepath1 = "./data_source_list_1.txt"
+    filepath2 = "./data_source_list_2.txt"
     filepath3 = "./data_source_list_3.txt"
     res = get_info()
     res1 = get_info1()
+    res2 = get_info2()
     res3 = get_info3()
     list_result = parse_info(res)
     list_result1 = parse_info(res1)
+    list_result2 = parse_info(res2)
     list_result3 = parse_info(res3)
     webhook = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f38433df-3a2a-46d3-bd45-8d31bf8adc94"
     webhook1 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=8eed9b02-38de-4d20-939c-278214128005"
+    webhook2 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=9b6a9289-c683-4f42-9a77-04c4384cf19e"
     webhook3 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0810ff88-06be-46dc-9d67-07e1d894ad95"
     push_info(filepath,list_result,webhook)
     push_info(filepath1,list_result1,webhook1)
+    push_info(filepath2,list_result2,webhook2)
     push_info(filepath3,list_result3,webhook3)
