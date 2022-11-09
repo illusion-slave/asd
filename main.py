@@ -2,7 +2,6 @@ import datetime
 import json
 import requests
 
- 
 def get_info(ContentLength,option2):
     url = "http://hslhapp.hhws168.com/common/v1/jsonDownload/"
     headers = {
@@ -61,7 +60,6 @@ def parse_info(res):
 
     return list3
 
- 
 def save_list(filepath,c_list):
  
     c_list = json.dumps(c_list)
@@ -89,7 +87,6 @@ def push_info(filepath,list_result,web_hook):
         for i in range(len(last_list)):
             print(last_list[i])
 
-        print("\n")
         print("本次数据：")
         for i in range(len(list_result)):
             print(list_result[i])
@@ -98,7 +95,6 @@ def push_info(filepath,list_result,web_hook):
             if list_result[i] not in last_list:
                 push_list.append(list_result[i].copy())
 
-        print("\n")
         print("需推送数据：")
         if len(push_list):
             for i in range(len(push_list)):
