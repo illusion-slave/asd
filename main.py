@@ -85,11 +85,12 @@ def push_info(filepath,list_result,web_hook):
     push_list = list()
 
     if len(list_result):
-        print("last_list")
+        print("上次数据：")
         for i in range(len(last_list)):
             print(last_list[i])
 
-        print("list_result")
+        print("\n")
+        print("本次数据：")
         for i in range(len(list_result)):
             print(list_result[i])
 
@@ -97,7 +98,8 @@ def push_info(filepath,list_result,web_hook):
             if list_result[i] not in last_list:
                 push_list.append(list_result[i].copy())
 
-        print("push_list")
+        print("\n")
+        print("需推送数据：")
         if len(push_list):
             for i in range(len(push_list)):
                 print(push_list[i])
@@ -109,6 +111,8 @@ def push_info(filepath,list_result,web_hook):
 
     else:
         print("list_result empty!!!")
+
+    print("\n")
 
 
  
@@ -152,22 +156,22 @@ if __name__ == '__main__':
     webhook2 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=9b6a9289-c683-4f42-9a77-04c4384cf19e"
     webhook3 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0810ff88-06be-46dc-9d67-07e1d894ad95"
 
-    print("list_大单回调")
+    print("大单回调")
     res = get_info("166","minuteLargeDdePulseQulet")
     list_result = parse_info(res)
     push_info(filepath, list_result, webhook)
 
-    print("list_潜水捞金")
+    print("潜水捞金")
     res1 = get_info("156","timeDivingGold")
     list_result1 = parse_info(res1)
     push_info(filepath1, list_result1, webhook1)
 
-    print("list_尾盘上引")
+    print("尾盘上引")
     res2 = get_info("156","minuteUpShadow")
     list_result2 = parse_info(res2)
     push_info(filepath2, list_result2, webhook2)
 
-    print("list_强势回调")
+    print("强势回调")
     res3 = get_info("158","minutePulseQulet")
     list_result3 = parse_info(res3)
     push_info(filepath3, list_result3, webhook3)
