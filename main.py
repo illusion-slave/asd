@@ -31,7 +31,7 @@ def get_info(ContentLength,option2):
     responses = requests.post(url = url,data = json.dumps(body),headers = headers)
     return responses
  
-def parse_info(res,weipan):
+def parse_info(res, noFirstGetTime):
     # 请求数据成功
     list3 = list()
     if res.status_code == 200:
@@ -46,7 +46,7 @@ def parse_info(res,weipan):
             dict_result = {}
 
             for _ in list2:
-                if weipan:
+                if noFirstGetTime:
                     for k, v in _.items():
                         if k == 'code' or k == 'name':
                             dict_result[k] = v
@@ -84,7 +84,7 @@ def read_list(filepath):
     b.close()
     return out
  
-def push_info(filepath,list_result,web_hook,weipan):
+def push_info(filepath, list_result, web_hook, noFirstGetTime):
     last_list = read_list(filepath)
     push_list = list()
 
@@ -105,7 +105,7 @@ def push_info(filepath,list_result,web_hook,weipan):
         if len(push_list):
             for i in range(len(push_list)):
                 print(push_list[i])
-                push_report(push_list[i],web_hook,weipan)
+                push_report(push_list[i], web_hook, noFirstGetTime)
         else:
             print("push_list empty!!!没有数据更新")
 
@@ -119,12 +119,12 @@ def push_info(filepath,list_result,web_hook,weipan):
 
  
  
-def push_report(push_dict,web_hook,weipan):
+def push_report(push_dict, web_hook, noFirstGetTime):
     header = {
         "Content-Type": "application/json;charset=UTF-8"
     }
 
-    if weipan:
+    if noFirstGetTime:
         message_body = {
             "msgtype": "text",
             "text": {
