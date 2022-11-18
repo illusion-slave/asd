@@ -31,7 +31,7 @@ def get_info(ContentLength,option2):
     responses = requests.post(url = url,data = json.dumps(body),headers = headers)
     return responses
  
-def parse_info(res):
+def parse_info(res,weipan):
     # 请求数据成功
     list3 = list()
     if res.status_code == 200:
@@ -44,10 +44,16 @@ def parse_info(res):
             # for i in range(len(list2)):
             #     print(list2[i])
             dict_result = {}
+
             for _ in list2:
-                for k, v in _.items():
-                    if k == 'code' or k == 'name' or k == 'firstGetTime':
-                        dict_result[k] = v
+                if weipan:
+                    for k, v in _.items():
+                        if k == 'code' or k == 'name':
+                            dict_result[k] = v
+                else:
+                    for k, v in _.items():
+                        if k == 'code' or k == 'name' or k == 'firstGetTime':
+                            dict_result[k] = v
                 list3.append(dict_result.copy())
 
             # print("list3")
@@ -78,7 +84,7 @@ def read_list(filepath):
     b.close()
     return out
  
-def push_info(filepath,list_result,web_hook):
+def push_info(filepath,list_result,web_hook,weipan):
     last_list = read_list(filepath)
     push_list = list()
 
@@ -99,7 +105,7 @@ def push_info(filepath,list_result,web_hook):
         if len(push_list):
             for i in range(len(push_list)):
                 print(push_list[i])
-                push_report(push_list[i],web_hook)
+                push_report(push_list[i],web_hook,weipan)
         else:
             print("push_list empty!!!没有数据更新")
 
@@ -113,27 +119,46 @@ def push_info(filepath,list_result,web_hook):
 
  
  
-def push_report(push_dict,web_hook):
+def push_report(push_dict,web_hook,weipan):
     header = {
         "Content-Type": "application/json;charset=UTF-8"
     }
-    message_body = {
-        "msgtype": "text",
-        "text": {
-            "content":
-                " •  code："+ push_dict['code'] +
-                "                      "
-                " •  name："+ push_dict['name'] +
-                "                      "
-                "https://m.10jqka.com.cn/stockpage/hs_"+push_dict['code'] +
-                "                      "
-                " •  firstGetTime："+ push_dict['firstGetTime']
-        },
-                "at": {
-            "atMobiles": [],
-            "isAtAll": False
+
+    if weipan:
+        message_body = {
+            "msgtype": "text",
+            "text": {
+                "content":
+                    " •  code：" + push_dict['code'] +
+                    "                      "
+                    " •  name：" + push_dict['name'] +
+                    "                      "
+                    "https://m.10jqka.com.cn/stockpage/hs_" + push_dict['code']
+            },
+            "at": {
+                "atMobiles": [],
+                "isAtAll": False
+            }
         }
-    }
+    else:
+        message_body = {
+            "msgtype": "text",
+            "text": {
+                "content":
+                    " •  code：" + push_dict['code'] +
+                    "                      "
+                    " •  name：" + push_dict['name'] +
+                    "                      "
+                    "https://m.10jqka.com.cn/stockpage/hs_" + push_dict['code'] +
+                    "                      "
+                    " •  firstGetTime：" + push_dict['firstGetTime']
+            },
+            "at": {
+                "atMobiles": [],
+                "isAtAll": False
+            }
+        }
+
     send_data = json.dumps(message_body)  # 将字典类型数据转化为json格式
     ChatBot = requests.post(url=web_hook, data=send_data, headers=header)
     opener = ChatBot.json()
@@ -154,20 +179,20 @@ if __name__ == '__main__':
 
     print("大单回调")
     res = get_info("166","minuteLargeDdePulseQulet")
-    list_result = parse_info(res)
-    push_info(filepath, list_result, webhook)
+    list_result = parse_info(res,0)
+    push_info(filepath, list_result, webhook,0)
 
     print("潜水捞金")
     res1 = get_info("156","timeDivingGold")
-    list_result1 = parse_info(res1)
-    push_info(filepath1, list_result1, webhook1)
+    list_result1 = parse_info(res1,0)
+    push_info(filepath1, list_result1, webhook1,0)
 
     print("尾盘上引")
     res2 = get_info("156","minuteUpShadow")
-    list_result2 = parse_info(res2)
-    push_info(filepath2, list_result2, webhook2)
+    list_result2 = parse_info(res2,1)
+    push_info(filepath2, list_result2, webhook2,1)
 
     print("强势回调")
     res3 = get_info("158","minutePulseQulet")
-    list_result3 = parse_info(res3)
-    push_info(filepath3, list_result3, webhook3)
+    list_result3 = parse_info(res3,0)
+    push_info(filepath3, list_result3, webhook3,0)
