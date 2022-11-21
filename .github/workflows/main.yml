@@ -2,8 +2,8 @@ name: post
 # 工作流在每次代码 push 的时候触发
 on:
   push:
-  schedule:
-    - cron: '*/5 01-8 * * *' 
+  #schedule:
+   # - cron: '*/5 01-8 * * *' 
   workflow_dispatch:
   repository_dispatch:
     types:
