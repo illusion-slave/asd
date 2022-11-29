@@ -1,1 +1,1 @@
-[{"code": "600636", "name": "\u56fd\u65b0\u6587\u5316", "firstGetTime": "09:31:16"}, {"code": "603067", "name": "\u632f\u534e\u80a1\u4efd", "firstGetTime": "09:32:22"}, {"code": "603106", "name": "\u6052\u94f6\u79d1\u6280", "firstGetTime": "09:32:26"}]
+[{"code": "600636", "name": "\u56fd\u65b0\u6587\u5316", "firstGetTime": "13:01:23"}, {"code": "603067", "name": "\u632f\u534e\u80a1\u4efd", "firstGetTime": "09:32:22"}, {"code": "603106", "name": "\u6052\u94f6\u79d1\u6280", "firstGetTime": "09:32:26"}]
