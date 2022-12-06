@@ -1,1 +1,1 @@
-[{"code": "000505", "name": "\u4eac\u7cae\u63a7\u80a1"}, {"code": "001330", "name": "\u535a\u7eb3\u5f71\u4e1a"}]
+[{"code": "000505", "name": "\u4eac\u7cae\u63a7\u80a1"}, {"code": "000523", "name": "\u5e7f\u5dde\u6d6a\u5947"}, {"code": "001330", "name": "\u535a\u7eb3\u5f71\u4e1a"}, {"code": "002419", "name": "\u5929\u8679\u80a1\u4efd"}]
