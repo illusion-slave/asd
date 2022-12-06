@@ -1,1 +1,1 @@
-[{"code": "600010", "name": "\u5305\u94a2\u80a1\u4efd", "firstGetTime": "09:44:13"}]
+[{"code": "600010", "name": "\u5305\u94a2\u80a1\u4efd", "firstGetTime": "09:44:13"}, {"code": "603799", "name": "\u534e\u53cb\u94b4\u4e1a", "firstGetTime": "11:00:30"}]
