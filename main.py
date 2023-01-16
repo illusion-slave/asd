@@ -48,11 +48,11 @@ def parse_info(res, noFirstGetTime):
             for _ in list2:
                 if noFirstGetTime:
                     for k, v in _.items():
-                        if k == 'code' or k == 'name':
+                        if k == 'code' or k == 'name' or k == 'date':
                             dict_result[k] = v
                 else:
                     for k, v in _.items():
-                        if k == 'code' or k == 'name' or k == 'firstGetTime':
+                        if k == 'code' or k == 'name' or k == 'date' or k == 'firstGetTime':
                             dict_result[k] = v
                 list3.append(dict_result.copy())
 
