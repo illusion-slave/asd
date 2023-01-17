@@ -81,7 +81,7 @@ def read_list(filepath):
     b.close()
     return out
  
-def push_info(filepath, list_judege, list_result, web_hook, noFirstGetTime):
+def push_info(filepath, list_judege, list_result, web_hook):
     last_list = read_list(filepath)
     push_list = list()
 
