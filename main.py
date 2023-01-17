@@ -44,14 +44,16 @@ def parse_info(res):
             list2 = json.loads(str1)
             # for i in range(len(list2)):
             #     print(list2[i])
+            dict_judge = {}
             dict_result = {}
 
             for _ in list2:
                 for k, v in _.items():
                     if k == 'name' or k == 'date':
-                        dict_result[k] = v
-                list_judge.append(dict_result.copy())
+                        dict_judge[k] = v
+                list_judge.append(dict_judge.copy())
 
+            for _ in list2:
                 for k, v in _.items():
                     if k == 'code' or k == 'name' or k == 'date' or k == 'firstGetTime':
                         dict_result[k] = v
