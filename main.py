@@ -33,8 +33,8 @@ def get_info(ContentLength,option2):
  
 def parse_info(res):
     # 请求数据成功
-    # list3 = list()
-    # list4 = list()
+    list_judge = list()
+    list_result = list()
     if res.status_code == 200:
         json1 = json.loads(res.text)
         dict1 = dict(json1)
