@@ -175,4 +175,4 @@ if __name__ == '__main__':
     print("强势回调")
     res3 = get_info("158","minutePulseQulet")
     list_judge3,list_result3 = parse_info(res3)
-    push_info(filepath3, list_judge3, list_result3, webhook3,1)
+    push_info(filepath3, list_judge3, list_result3, webhook3)
