@@ -106,7 +106,7 @@ def push_info(filepath, list_judege, list_result, web_hook):
         else:
             print("push_list empty!!!没有数据更新")
 
-        save_list(filepath, list_result)
+        save_list(filepath, list_judege)
 
     else:
         print("list_result empty!!!")
