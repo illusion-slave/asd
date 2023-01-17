@@ -180,12 +180,12 @@ if __name__ == '__main__':
     print("大单回调")
     res = get_info("166","minuteLargeDdePulseQulet")
     list_result = parse_info(res,1)
-    push_info(filepath, list_result, webhook,0)
+    push_info(filepath, list_result, webhook,1)
 
     print("潜水捞金")
     res1 = get_info("156","timeDivingGold")
     list_result1 = parse_info(res1,1)
-    push_info(filepath1, list_result1, webhook1,0)
+    push_info(filepath1, list_result1, webhook1,1)
 
     print("尾盘上引")
     res2 = get_info("156","minuteUpShadow")
@@ -195,4 +195,4 @@ if __name__ == '__main__':
     print("强势回调")
     res3 = get_info("158","minutePulseQulet")
     list_result3 = parse_info(res3,1)
-    push_info(filepath3, list_result3, webhook3,0)
+    push_info(filepath3, list_result3, webhook3,1)
