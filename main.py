@@ -31,9 +31,10 @@ def get_info(ContentLength,option2):
     responses = requests.post(url = url,data = json.dumps(body),headers = headers)
     return responses
  
-def parse_info(res, noFirstGetTime):
+def parse_info(res):
     # 请求数据成功
-    list3 = list()
+    # list3 = list()
+    # list4 = list()
     if res.status_code == 200:
         json1 = json.loads(res.text)
         dict1 = dict(json1)
@@ -46,25 +47,21 @@ def parse_info(res, noFirstGetTime):
             dict_result = {}
 
             for _ in list2:
-                if noFirstGetTime:
-                    for k, v in _.items():
-                        if k == 'code' or k == 'name' or k == 'date':
-                            dict_result[k] = v
-                else:
-                    for k, v in _.items():
-                        if k == 'code' or k == 'name' or k == 'date' or k == 'firstGetTime':
-                            dict_result[k] = v
-                list3.append(dict_result.copy())
+                for k, v in _.items():
+                    if k == 'name' or k == 'date':
+                        dict_result[k] = v
+                list_judge.append(dict_result.copy())
 
-            # print("list3")
-            # for i in range(len(list3)):
-            #     print(list3[i])
+                for k, v in _.items():
+                    if k == 'code' or k == 'name' or k == 'date' or k == 'firstGetTime':
+                        dict_result[k] = v
+                list_result.append(dict_result.copy())
         else:
             print("data is null")
     else:
         print("requset failed!")
 
-    return list3
+    return list_judge,list_result
 
 def save_list(filepath,c_list):
  
@@ -84,11 +81,11 @@ def read_list(filepath):
     b.close()
     return out
  
-def push_info(filepath, list_result, web_hook, noFirstGetTime):
+def push_info(filepath, list_judege, list_result, web_hook, noFirstGetTime):
     last_list = read_list(filepath)
     push_list = list()
 
-    if len(list_result):
+    if len(list_judege):
         print("上次数据：")
         for i in range(len(last_list)):
             print(last_list[i])
@@ -98,14 +95,14 @@ def push_info(filepath, list_result, web_hook, noFirstGetTime):
             print(list_result[i])
 
         for i in range(len(list_result)):
-            if list_result[i] not in last_list:
+            if list_judege[i] not in last_list:
                 push_list.append(list_result[i].copy())
 
         print("需推送数据：")
         if len(push_list):
             for i in range(len(push_list)):
                 print(push_list[i])
-                push_report(push_list[i], web_hook, noFirstGetTime)
+                push_report(push_list[i], web_hook)
         else:
             print("push_list empty!!!没有数据更新")
 
@@ -119,45 +116,28 @@ def push_info(filepath, list_result, web_hook, noFirstGetTime):
 
  
  
-def push_report(push_dict, web_hook, noFirstGetTime):
+def push_report(push_dict, web_hook):
     header = {
         "Content-Type": "application/json;charset=UTF-8"
     }
 
-    if noFirstGetTime:
-        message_body = {
-            "msgtype": "text",
-            "text": {
-                "content":
-                    " •  code：" + push_dict['code'] +
-                    "                      "
-                    " •  name：" + push_dict['name'] +
-                    "                      "
-                    "https://m.10jqka.com.cn/stockpage/hs_" + push_dict['code']
-            },
-            "at": {
-                "atMobiles": [],
-                "isAtAll": False
-            }
+    message_body = {
+        "msgtype": "text",
+        "text": {
+            "content":
+                " •  code：" + push_dict['code'] +
+                "                      "
+                " •  name：" + push_dict['name'] +
+                "                      "
+                "https://m.10jqka.com.cn/stockpage/hs_" + push_dict['code'] +
+                "                      "
+                " •  firstGetTime：" + push_dict['firstGetTime']
+        },
+        "at": {
+            "atMobiles": [],
+            "isAtAll": False
         }
-    else:
-        message_body = {
-            "msgtype": "text",
-            "text": {
-                "content":
-                    " •  code：" + push_dict['code'] +
-                    "                      "
-                    " •  name：" + push_dict['name'] +
-                    "                      "
-                    "https://m.10jqka.com.cn/stockpage/hs_" + push_dict['code'] +
-                    "                      "
-                    " •  firstGetTime：" + push_dict['firstGetTime']
-            },
-            "at": {
-                "atMobiles": [],
-                "isAtAll": False
-            }
-        }
+    }
 
     send_data = json.dumps(message_body)  # 将字典类型数据转化为json格式
     ChatBot = requests.post(url=web_hook, data=send_data, headers=header)
@@ -179,20 +159,20 @@ if __name__ == '__main__':
 
     print("大单回调")
     res = get_info("166","minuteLargeDdePulseQulet")
-    list_result = parse_info(res,1)
-    push_info(filepath, list_result, webhook,1)
+    list_judge,list_result = parse_info(res)
+    push_info(filepath, list_judge, list_result, webhook)
 
     print("潜水捞金")
     res1 = get_info("156","timeDivingGold")
-    list_result1 = parse_info(res1,1)
-    push_info(filepath1, list_result1, webhook1,1)
+    list_judge1,list_result1 = parse_info(res1)
+    push_info(filepath1, list_judge1,list_result1, webhook1)
 
     print("尾盘上引")
     res2 = get_info("156","minuteUpShadow")
-    list_result2 = parse_info(res2,1)
-    push_info(filepath2, list_result2, webhook2,1)
+    list_judge2,list_result2 = parse_info(res2)
+    push_info(filepath2, list_judge2, list_result2, webhook2)
 
     print("强势回调")
     res3 = get_info("158","minutePulseQulet")
-    list_result3 = parse_info(res3,1)
-    push_info(filepath3, list_result3, webhook3,1)
+    list_judge3,list_result3 = parse_info(res3)
+    push_info(filepath3, list_judge3, list_result3, webhook3,1)
